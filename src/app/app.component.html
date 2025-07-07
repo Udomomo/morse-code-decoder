@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>モールスコード解読器</h1>
+  
+  <div class="input-section">
+    <div class="input-header">
+      <label for="morse-input">モールスコード入力</label>
+      <div class="language-toggle-container">
+        <span class="language-label">日本語</span>
+        <label class="toggle-switch">
+          <input 
+            type="checkbox" 
+            [checked]="currentLanguage === 'english'"
+            (change)="toggleLanguage()"
+          >
+          <span class="slider"></span>
+        </label>
+        <span class="language-label">English</span>
+      </div>
+    </div>
+    <textarea
+      id="morse-input"
+      class="morse-input"
+      placeholder="モールスコードを入力してください（例: .- -... -.-. ）"
+      [value]="morseCode"
+      (input)="onMorseCodeInput($event)"
+      (keydown)="onKeyDown($event)"
+      maxlength="1000"
+      rows="5"
+    ></textarea>
+    <div class="character-count">{{ morseCode.length }} / 1000</div>
+  </div>
+
+  <div class="output-section">
+    <label for="decoded-output">解読結果</label>
+    <textarea
+      id="decoded-output"
+      class="decoded-output"
+      [value]="decodedText"
+      readonly
+      rows="5"
+    ></textarea>
+  </div>
+  
+  <div class="footer">
+    <p class="credit">This page is created by Claude Code.</p>
+  </div>
+</div>
+
+
